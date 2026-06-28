@@ -1,0 +1,54 @@
+version: 1
+agents:
+  orch:
+    profile: orch
+    role: orchestrator
+    description: Plans, delegates, tracks, reviews evidence, and consolidates the AI team's work.
+    can_edit_files: false
+    escalates_to: user
+    skills:
+      - kanban-orchestrator
+      - ai-team-orchestration
+
+  coding:
+    profile: coding
+    role: implementer
+    description: Implements code, runs tests, debugs, fixes, and delivers real evidence.
+    can_edit_files: true
+    escalates_to: orch
+    skills:
+      - systematic-debugging
+      - test-driven-development
+      - requesting-code-review
+
+  fast:
+    profile: fast
+    role: quick_worker
+    description: Executes quick, simple, reversible, low-risk tasks.
+    can_edit_files: limited
+    escalates_to: orch
+    skills: []
+
+  strong:
+    profile: strong
+    role: architect_reviewer
+    description: Analyzes architecture, trade-offs, risks, strategy, and critical review.
+    can_edit_files: false
+    escalates_to: orch
+    skills: []
+
+  search:
+    profile: search
+    role: researcher
+    description: Researches documentation, current facts, external sources, APIs, and comparisons.
+    can_edit_files: false
+    escalates_to: orch
+    skills: []
+
+  default:
+    profile: default
+    role: fallback
+    description: Base/legacy profile; not a primary team worker, but shown for visibility.
+    can_edit_files: false
+    escalates_to: orch
+    skills: []
