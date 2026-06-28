@@ -279,8 +279,11 @@ def get_kanban_summary() -> dict | None:
 
     Uses the existing public API ``kanban_db.board_stats(conn)`` — the
     same function ``hermes kanban stats`` uses — so there is no duplicated
-    SQL logic. This is strictly read-only: it does not create, update,
-    or mutate any task or state.
+    SQL logic. This is strictly read-only: it does not create, init, or
+    mutate any task, DB file, or state.
+
+    If the Kanban DB file does not exist yet (fresh HERMES_HOME), returns
+    ``None`` without creating it. Only opens an existing DB.
 
     Returns a dict with keys:
         - ``total``: int (non-archived tasks)
@@ -292,7 +295,11 @@ def get_kanban_summary() -> dict | None:
     """
     try:
         from hermes_cli import kanban_db as kb
-        kb.init_db()
+        # Check if the DB file exists BEFORE connecting — connecting
+        # auto-creates the schema, which would violate read-only.
+        db_path = kb.kanban_db_path()
+        if not db_path.is_file():
+            return None
         with kb.connect_closing() as conn:
             stats = kb.board_stats(conn)
     except Exception:

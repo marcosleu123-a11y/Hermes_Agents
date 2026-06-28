@@ -19,6 +19,7 @@ The MVP adds a CLI/dashboard layer to visualize and operate this team:
 - `hermes agents init`
 - `hermes agents orchestrate "<task>"`
 - `hermes agents dashboard`
+- `hermes agents dashboard --no-detail` (with Kanban summary)
 
 ## Status
 
@@ -33,7 +34,7 @@ venv/bin/python -m pytest tests/hermes_cli/test_agents_cli.py tests/hermes_cli/t
 Validated result:
 
 ```
-197 passed
+210 passed
 ```
 
 ## Base repository
