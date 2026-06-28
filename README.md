@@ -63,6 +63,15 @@ Then run the relevant tests:
 venv/bin/python -m pytest tests/hermes_cli/test_agents_cli.py tests/hermes_cli/test_kanban_core_functionality.py -q -o 'addopts='
 ```
 
+## Repository contents
+
+- `docs/` — project documentation (overview, commands, installation, architecture, verification, roadmap)
+- `configs/` — configuration examples (`agents.yaml.example`)
+- `profiles/` — SOUL.md examples for each profile (orch, coding, fast, strong, search)
+- `skills/` — orchestration skill/playbook
+- `source/` — snapshot of the main implementation files
+- `patches/` — applicable patch over the official Hermes Agent
+
 ## Note
 
 This repository is **not** the official Hermes Agent. It is a personal documentation/customization of the Hermes Agents project.
